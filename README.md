@@ -33,3 +33,7 @@ https://www.npmjs.com/package/svg-pan-zoom
 https://medium.com/@steveruiz/using-a-javascript-library-without-type-declarations-in-a-typescript-project-3643490015f3
 https://pnp.github.io/blog/post/create-first-pcf-component-using-react/
 
+
+using ts lib on react but not "svg-pan-zoom" but similar proyect
+https://codesandbox.io/s/react-svg-pan-zoom-bh90t
+
