@@ -211,14 +211,19 @@ elementsArray.forEach(function (elem) {
 
     //const [clickedButton, setClickedButton] = React.useState('');
 
+    // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/#custom-hooks
+    // https://www.kindacode.com/article/react-typescript-handling-onclick-event/#:~:text=3%20Conclusion-,Example%201%3A%20Button%20onClick,-App%20Preview
 
     const onMoveButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      // https://stackoverflow.com/questions/68702115/type-error-type-boolean-void-is-not-assignable-to-type-mouseeventh
       event.preventDefault();
 
 
       const button: HTMLButtonElement = event.currentTarget;
       //setClickedButton(button.name);
 
+
+      onResetButtonClick(event);
       //throw new Error("Function not implemented.");
       console.log(button); // undefined, as `this` is the element
 
@@ -267,8 +272,10 @@ elementsArray.forEach(function (elem) {
       window.panZoom.zoom(0.8);
 
 
-      let elementsArray = document.querySelectorAll("rect");
-
+      //let elementsArray = document.querySelectorAll("rect");
+      // #path489
+      // document.querySelectorAll("#layer-MC7 path#path485")
+      let elementsArray = document.querySelectorAll("#layer-MC7 path")
       elementsArray.forEach(function (elem) {
         elem.addEventListener("click", function (event) {
           console.log("this is working");
@@ -291,7 +298,8 @@ elementsArray.forEach(function (elem) {
             var zoom = vbb.width / bb.width;
             window.panZoom.panBy({ x: x * rz, y: y * rz });
             window.panZoom.zoom(zoom);
-            window.panZoom.zoom(1.5);
+            //window.panZoom.zoom(1.5);
+            window.panZoom.zoom(0.5);
             // This function does stuff
           }
         });
@@ -340,7 +348,7 @@ elementsArray.forEach(function (elem) {
     // https://www.npmjs.com/package/react-svg#:~:text=outermost%20wrapper%20element.-,Example,-%3CReactSVG%0A%20%20afterInjection
 
     // https://stackoverflow.com/questions/44900569/turning-an-svg-string-into-an-image-in-a-react-component
-    
+
     var image = this.props.name as string;
     return (
       <div>
@@ -359,6 +367,14 @@ elementsArray.forEach(function (elem) {
             loading={() => <span>Loading</span>}
             onError={(error) => {
               console.error(error)
+            }}
+            beforeInjection={(svg) => {
+              //svg.classList.add('svg-class-name')
+              //svg.setAttribute('style', 'width: 200px')
+              svg.setAttribute('width', '500px')
+              svg.setAttribute('height', '500px')
+              //width="4709.04"
+              //height="2532.7466"
             }}
           />
 
