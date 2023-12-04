@@ -1,28 +1,14 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
-import { HelloWorld, IHelloWorldProps } from "./HelloWorld";
+import { HelloWorld, IHelloWorldProps } from "./HelloWorld2";
 import * as React from "react";
 
 export class RoomAvailabilityMapAndRouter implements ComponentFramework.ReactControl<IInputs, IOutputs> {
-    	// Cached context object for the latest updateView
-	private contextObj: ComponentFramework.Context<IInputs>;
-
-	// Div element created as part of this control's main container
-	private mainContainer: HTMLDivElement;
-
-	// Image element created as part of this control's table
-	private svgContainer: HTMLDivElement;
-
-	private randomString: string;
-
-    private svg: SVGGraphicsElement;
-    private vbox: number[];
-
-	private zoomLevel = 1;
-	private zoomToId: string;
-
-	private tscale = 2;
-    
     private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
+
+    private contextObj: ComponentFramework.Context<IInputs>;
+
+
+
     private notifyOutputChanged: () => void;
 
     /**
@@ -42,6 +28,8 @@ export class RoomAvailabilityMapAndRouter implements ComponentFramework.ReactCon
         notifyOutputChanged: () => void,
         state: ComponentFramework.Dictionary
     ): void {
+
+        this.contextObj = context;
         this.notifyOutputChanged = notifyOutputChanged;
     }
 
@@ -51,7 +39,17 @@ export class RoomAvailabilityMapAndRouter implements ComponentFramework.ReactCon
      * @returns ReactElement root react element for the control
      */
     public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-        const props: IHelloWorldProps = { name: 'Hello, World!' };
+
+
+        /*
+        if (this.contextObj.parameters.svg != null) {
+            if (this.contextObj.parameters.svg.raw != null) {
+                this.svgContainer.innerHTML = this.contextObj.parameters.svg.raw.toString();
+                this.initSVG();
+            }
+        }
+        */
+        const props: IHelloWorldProps = { name: this.contextObj.parameters.svg.raw  as string};
         return React.createElement(
             HelloWorld, props
         );
@@ -62,7 +60,7 @@ export class RoomAvailabilityMapAndRouter implements ComponentFramework.ReactCon
      * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
      */
     public getOutputs(): IOutputs {
-        return { };
+        return {};
     }
 
     /**

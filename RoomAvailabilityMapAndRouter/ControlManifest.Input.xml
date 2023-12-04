@@ -18,7 +18,22 @@
       -->
     </external-service-usage>
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="sampleProperty" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    
+        
+    
+    <property name="svg" display-name-key="svg_Display_Key" description-key="SVG content" of-type="Multiple" usage="input" required="true" />
+        <property name="zoomLevel" display-name-key="zoomLevl_Display_Key" description-key="Zoom level" of-type="Whole.None" usage="input" required="true" />
+    <data-set name="dataSet" display-name-key="SVG Elements Configurations">
+      <property-set name="id" display-name-key="Id_Display_Key" description-key="SVG element identifier" of-type="SingleLine.Text" usage="bound" required="true" />
+      <property-set name="fill" display-name-key="Fill_Display_Key" description-key="SVG element fill" of-type="SingleLine.Text" usage="bound" required="true" />
+    </data-set>
+    
+
+    
+      <!--
+            <property name="sampleProperty" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+
+      -->
     <!--
       Property node's of-type attribute can be of-type-group attribute.
       Example:

@@ -1,0 +1,375 @@
+import * as React from "react";
+import "./styles.css";
+
+import * as Hammer from "hammerjs";
+// import Hammer from "hammerjs";
+import * as svgPanZoom from "svg-pan-zoom";
+// import svgPanZoom from "svg-pan-zoom";
+import { ReactSVG } from 'react-svg';
+
+declare global {
+  interface Window {
+    panZoom: any;
+    hammer: any;
+  }
+}
+export interface IHelloWorldProps {
+  name?: string;
+}
+
+const eventsHandler = {
+  haltEventListeners: [
+    "touchstart",
+    "touchend",
+    "touchmove",
+    "touchleave",
+    "touchcancel"
+  ],
+  init: function (options: { instance: any; svgElement: HTMLElement | SVGElement; }) {
+    var instance = options.instance,
+      initialScale = 1,
+      pannedX = 0,
+      pannedY = 0;
+
+    // Init Hammer
+    // Listen only for pointer and touch events
+    // https://www.npmjs.com/package/@types/hammerjs
+    // https://github.com/hammerjs/hammer.js/issues/1084
+    window.hammer = new Hammer(options.svgElement, {
+      inputClass: Hammer.TouchMouseInput
+        ? Hammer.PointerEventInput
+        : Hammer.TouchInput
+    });
+
+    // Enable pinch
+    window.hammer.get("pinch").set({ enable: true });
+
+    // Handle double tap
+    window.hammer.on("doubletap", function (ev: any) {
+      instance.zoomIn();
+    });
+
+    // Handle pan
+    window.hammer.on("panstart panmove", function (ev: { type: string; deltaX: number; deltaY: number; }) {
+      // On pan start reset panned variables
+      if (ev.type === "panstart") {
+        pannedX = 0;
+        pannedY = 0;
+      }
+
+      // Pan only the difference
+      instance.panBy({ x: ev.deltaX - pannedX, y: ev.deltaY - pannedY });
+      pannedX = ev.deltaX;
+      pannedY = ev.deltaY;
+    });
+
+    // Handle pinch
+    window.hammer.on("pinchstart pinchmove", function (ev: { type: string; scale: number; center: { x: any; y: any; }; }) {
+      // On pinch start remember initial zoom
+      if (ev.type === "pinchstart") {
+        initialScale = instance.getZoom();
+        instance.zoomAtPoint(initialScale * ev.scale, {
+          x: ev.center.x,
+          y: ev.center.y
+        });
+      }
+
+      instance.zoomAtPoint(initialScale * ev.scale, {
+        x: ev.center.x,
+        y: ev.center.y
+      });
+    });
+
+    // Prevent moving the page on some devices when panning over SVG
+    options.svgElement.addEventListener("touchmove", function (e) {
+      e.preventDefault();
+    });
+  },
+
+  destroy: function () {
+    window.hammer.destroy();
+  }
+};
+
+export class HelloWorld extends React.Component<IHelloWorldProps> {
+  constructor(props: any) {
+    super(props);
+
+    // Initializing the state
+    //window.state = { color: "lightgreen" };
+  }
+
+
+
+  componentDidMount() {
+
+
+
+
+
+
+    // https://www.geeksforgeeks.org/reactjs-componentdidmount-method/
+    // Changing the state after 2 sec
+    // from the time when the component
+    // is
+
+
+
+    /*
+    window.panZoom = svgPanZoom("#svg-id", {
+      zoomEnabled: true,
+      controlIconsEnabled: false,
+      fit: true,
+      center: true,
+      //maxZoom: 5,
+      preventMouseEventsDefault: false,
+      customEventsHandler: eventsHandler
+    });
+    window.panZoom.zoom(0.8);
+  */
+
+
+    /*
+    setTimeout(() => {
+      window.setState({ color: "wheat" });
+    }, 2000);
+  */
+    // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+    //const myMoveButton = document.getElementById("move");
+    //const myResetButton = document.getElementById("reset");
+    /*
+        if (myMoveButton) {
+          myMoveButton.addEventListener("click", onMoveButtonclick, false);
+        }
+        function onMoveButtonclick(event: any) {
+          console.log(window.name); // undefined, as `this` is the element
+    
+          //$("#reset").click();
+          if (myResetButton) {
+            myResetButton.click();
+          }
+          //var bb = $("#target")[0].getBBox();
+          var target = document.querySelector("#target");
+          if (target) {
+            var bb = (target as SVGGraphicsElement).getBBox();
+            var vbb = window.panZoom.getSizes().viewBox;
+            var x = vbb.width / 2 - bb.x - bb.width / 2;
+            var y = vbb.height / 2 - bb.y - bb.height / 2;
+            var rz = window.panZoom.getSizes().realZoom;
+            var zoom = vbb.width / bb.width;
+            window.panZoom.panBy({ x: x * rz, y: y * rz });
+            window.panZoom.zoom(zoom);
+          }
+        }
+    
+        if (myResetButton) {
+          myResetButton.addEventListener("click", function () {
+            window.panZoom.fit();
+            window.panZoom.center();
+            window.panZoom.zoom(1);
+          });
+        }
+    */
+
+
+
+
+    /*
+let elementsArray = document.querySelectorAll("rect");
+
+elementsArray.forEach(function (elem) {
+  elem.addEventListener("click", function (event) {
+    console.log("this is working");
+
+    console.log(event); // undefined, as `this` is the element
+
+    //$("#reset").click();
+
+    
+    //var bb = $("#target")[0].getBBox();
+    //var bb = document.querySelector("#target").getBBox();
+    var bb = null;
+    if (event.target) {
+      bb = (event.target as SVGGraphicsElement).getBBox();
+      console.log(event.target);
+      var vbb = window.panZoom.getSizes().viewBox;
+      var x = vbb.width / 2 - bb.x - bb.width / 2;
+      var y = vbb.height / 2 - bb.y - bb.height / 2;
+      var rz = window.panZoom.getSizes().realZoom;
+      var zoom = vbb.width / bb.width;
+      window.panZoom.panBy({ x: x * rz, y: y * rz });
+      window.panZoom.zoom(zoom);
+      window.panZoom.zoom(1.5);
+      // This function does stuff
+    }
+  });
+});
+
+*/
+  }
+  render() {
+
+    //const [clickedButton, setClickedButton] = React.useState('');
+
+
+    const onMoveButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault();
+
+
+      const button: HTMLButtonElement = event.currentTarget;
+      //setClickedButton(button.name);
+
+      //throw new Error("Function not implemented.");
+      console.log(button); // undefined, as `this` is the element
+
+
+      //var bb = $("#target")[0].getBBox();
+      var target = document.querySelector("#target");
+      if (target) {
+        var bb = (target as SVGGraphicsElement).getBBox();
+        var vbb = window.panZoom.getSizes().viewBox;
+        var x = vbb.width / 2 - bb.x - bb.width / 2;
+        var y = vbb.height / 2 - bb.y - bb.height / 2;
+        var rz = window.panZoom.getSizes().realZoom;
+        var zoom = vbb.width / bb.width;
+        window.panZoom.panBy({ x: x * rz, y: y * rz });
+        window.panZoom.zoom(zoom);
+      }
+
+
+
+    };
+
+
+
+    const onResetButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault();
+
+
+      const button: HTMLButtonElement = event.currentTarget;
+
+      window.panZoom.fit();
+      window.panZoom.center();
+      window.panZoom.zoom(1);
+    }
+
+
+    function createSVGController() {
+      window.panZoom = svgPanZoom("#svg-id", {
+        zoomEnabled: true,
+        controlIconsEnabled: false,
+        fit: true,
+        center: true,
+        //maxZoom: 5,
+        preventMouseEventsDefault: false,
+        customEventsHandler: eventsHandler
+      });
+      window.panZoom.zoom(0.8);
+
+
+      let elementsArray = document.querySelectorAll("rect");
+
+      elementsArray.forEach(function (elem) {
+        elem.addEventListener("click", function (event) {
+          console.log("this is working");
+
+          console.log(event); // undefined, as `this` is the element
+
+          //$("#reset").click();
+
+
+          //var bb = $("#target")[0].getBBox();
+          //var bb = document.querySelector("#target").getBBox();
+          var bb = null;
+          if (event.target) {
+            bb = (event.target as SVGGraphicsElement).getBBox();
+            console.log(event.target);
+            var vbb = window.panZoom.getSizes().viewBox;
+            var x = vbb.width / 2 - bb.x - bb.width / 2;
+            var y = vbb.height / 2 - bb.y - bb.height / 2;
+            var rz = window.panZoom.getSizes().realZoom;
+            var zoom = vbb.width / bb.width;
+            window.panZoom.panBy({ x: x * rz, y: y * rz });
+            window.panZoom.zoom(zoom);
+            window.panZoom.zoom(1.5);
+            // This function does stuff
+          }
+        });
+      });
+
+    }
+    /*
+    window.panZoom = svgPanZoom("#svg-id", {
+      zoomEnabled: true,
+      controlIconsEnabled: false,
+      fit: true,
+      center: true,
+      //maxZoom: 5,
+      preventMouseEventsDefault: false,
+      customEventsHandler: eventsHandler
+    });
+    window.panZoom.zoom(0.8);
+*/
+    /*    function onMoveButtonclick() {
+          console.log(window.name); // undefined, as `this` is the element
+    
+    
+          //var bb = $("#target")[0].getBBox();
+          var target = document.querySelector("#target");
+          if (target) {
+            var bb = (target as SVGGraphicsElement).getBBox();
+            var vbb = window.panZoom.getSizes().viewBox;
+            var x = vbb.width / 2 - bb.x - bb.width / 2;
+            var y = vbb.height / 2 - bb.y - bb.height / 2;
+            var rz = window.panZoom.getSizes().realZoom;
+            var zoom = vbb.width / bb.width;
+            window.panZoom.panBy({ x: x * rz, y: y * rz });
+            window.panZoom.zoom(zoom);
+          }
+        }
+    
+    */
+
+
+
+    // https://stackoverflow.com/questions/44900569/turning-an-svg-string-into-an-image-in-a-react-component
+
+
+
+    //const image = '<svg id="svg-id" xmlns="http://www.w3.org/2000/svg" version="1.1">        <rect x="0" y="0" width="50" height="50" fill="#00f" />         <rect x="200" y="0" width="50" height="50" fill="#00f" />        <rect          x="0"          y="200"          width="50"          height="50"          fill="#0ff"          id="target"        />        <rect x="200" y="200" width="50" height="50" fill="#f00" />      </svg>'
+    // https://www.npmjs.com/package/react-svg#:~:text=outermost%20wrapper%20element.-,Example,-%3CReactSVG%0A%20%20afterInjection
+
+    // https://stackoverflow.com/questions/44900569/turning-an-svg-string-into-an-image-in-a-react-component
+    
+    var image = this.props.name as string;
+    return (
+      <div>
+        <div
+          id="container"
+          style={{
+            width: "300px",
+            height: "300px"
+            //border: "1px solid black"
+          }}
+        >
+
+
+
+          <ReactSVG src={`data:image/svg+xml;utf8,${encodeURIComponent(image)}`} afterInjection={createSVGController}
+            loading={() => <span>Loading</span>}
+            onError={(error) => {
+              console.error(error)
+            }}
+          />
+
+
+
+
+          <button id="move" onClick={onMoveButtonClick}>Zoom to Target</button>
+          <button id="reset" onClick={onResetButtonClick}>Reset</button>
+          <p>        {this.props.name}</p>
+        </div>
+      </div>
+    );
+  }
+}
