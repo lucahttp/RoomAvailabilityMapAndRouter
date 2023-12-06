@@ -3,6 +3,21 @@
 
 
 
+## requirements
+    - vscode
+    - powerplatform vs code extension
+    - windows local admin rights 
+## preparation
+    inside vs code
+        inside the terminal run the following command
+            pac pcf init -ns ltc -n RoomAvailabilityMapAndRouter -t dataset -fw react --run-npm-install
+            
+## reverse - engineering
+    pac canvas unpack --sources 'C:\Users\sainluca\OneDrive - Boehringer Ingelheim\UCC CoCo\PCF\PCF-SVG-Control\Samples\SolutionUnpacked' --msapp "C:\Users\sainluca\OneDrive - Boehringer Ingelheim\UCC CoCo\PCF\PCF-SVG-Control\Samples\PCFSVGControlSampleSolution_0_0_0_1\CanvasApps\pag_technicalmanual_8ff7d_DocumentUri.msapp"
+
+
+
+
 https://github.com/jenschristianschroder/PCF-SVG-Control/blob/master/SVGControl/index.ts
 
 https://github.com/jenschristianschroder/PCF-SVG-Control/blob/master/SVGControl/ControlManifest.Input.xml
@@ -17,12 +32,6 @@ npm install svg-pan-zoom hammerjs
 
 import svgPanZoom from "svg-pan-zoom"; // import * as svgPanZoom from 'svg-pan-zoom';​
 import Hammer from "hammerjs";
-
-
-pac pcf init -ns ltc -n RoomAvailabilityMapAndRouter -t field -fw none --run-npm-install
-
-
-
 
 
 

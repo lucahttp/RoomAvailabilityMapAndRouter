@@ -1,14 +1,11 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
-import { HelloWorld, IHelloWorldProps } from "./HelloWorld2";
+import { HelloWorld, IHelloWorldProps } from "./HelloWorld3";
 import * as React from "react";
 
 export class RoomAvailabilityMapAndRouter implements ComponentFramework.ReactControl<IInputs, IOutputs> {
     private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
 
     private contextObj: ComponentFramework.Context<IInputs>;
-
-
-
     private notifyOutputChanged: () => void;
 
     /**
