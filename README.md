@@ -16,10 +16,30 @@
     pac canvas unpack --sources 'C:\Users\sainluca\OneDrive - Boehringer Ingelheim\UCC CoCo\PCF\PCF-SVG-Control\Samples\SolutionUnpacked' --msapp "C:\Users\sainluca\OneDrive - Boehringer Ingelheim\UCC CoCo\PCF\PCF-SVG-Control\Samples\PCFSVGControlSampleSolution_0_0_0_1\CanvasApps\pag_technicalmanual_8ff7d_DocumentUri.msapp"
 
 
+# research
+https://github.com/WalnutProgramming/room-finder
+
+https://github.com/KnotzerIO/indoor-wayfinder
+    https://indoor-wayfinder.vercel.app/?position=v35
+https://github.com/openindoormaps/openindoormaps
+    https://openindoormaps.vercel.app/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 https://github.com/jenschristianschroder/PCF-SVG-Control/blob/master/SVGControl/index.ts
-
 https://github.com/jenschristianschroder/PCF-SVG-Control/blob/master/SVGControl/ControlManifest.Input.xml
 
 https://codepen.io/lucahttp/pen/qBgryWx
