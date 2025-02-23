@@ -17,13 +17,24 @@
 
 
 # research
-https://github.com/WalnutProgramming/room-finder
+ - https://github.com/WalnutProgramming/room-finder
 
-https://github.com/KnotzerIO/indoor-wayfinder
+
+ - https://github.com/KnotzerIO/indoor-wayfinder
     https://indoor-wayfinder.vercel.app/?position=v35
-https://github.com/openindoormaps/openindoormaps
+
+ - https://github.com/openindoormaps/openindoormaps
     https://openindoormaps.vercel.app/
 
+
+
+ - https://jsfiddle.net/jpkf04ov/
+
+ - https://pmc.ncbi.nlm.nih.gov/articles/PMC5659309/
+
+ - https://project-archive.inf.ed.ac.uk/ug4/20223034/ug4_proj.pdf
+
+ - https://gearheart.io/blog/route-finding-for-locationbuilding-svg-maps/
 
 
 
