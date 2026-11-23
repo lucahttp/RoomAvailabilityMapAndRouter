@@ -129,3 +129,15 @@ dist
 .yarn/install-state.gz
 .pnp.*
 package-lock.json
+
+# build output de Power Apps
+out/
+
+# directorio accidental "~"
+~/
+
+# build output de Power Apps
+out/
+
+# directorio accidental "~"
+~/
